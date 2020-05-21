@@ -1,0 +1,68 @@
+<form nz-form [formGroup]="validateForm">
+
+  <nz-form-item>
+    <nz-form-label
+      [nzSm]="6" [nzXs]="24"
+      nzFor="repos"
+      nzRequired>仓库地址
+    </nz-form-label>
+    <nz-form-control
+      [nzSm]="14"
+      [nzXs]="24"
+      [nzValidateStatus]="validateForm.controls['repos']"
+      nzErrorTip="请添加您的仓库地址"
+    >
+      <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+        <ng-template #addOnBeforeTemplate>
+          <nz-select formControlName="reposPrefix">
+            <nz-option nzLabel="http" nzValue="http://"></nz-option>
+            <nz-option nzLabel="https" nzValue="https://"></nz-option>
+          </nz-select>
+        </ng-template>
+        <input formControlName="reposUrl" id="'reposUrl'" placeholder="gitlab.example.com" nz-input/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label
+      [nzSm]="6" [nzXs]="24"
+      nzFor="version"
+      nzRequired>
+      版本
+    </nz-form-label>
+    <nz-form-control
+      [nzSm]="14" [nzXs]="24"
+      nzErrorTip="请选择仓库版本">
+
+      <nz-select id="version" formControlName="version">
+        <nz-option nzValue="3" nzLabel="v3"></nz-option>
+        <nz-option nzValue="4" nzLabel="v4"></nz-option>
+        <nz-option nzValue="5" nzLabel="v5"></nz-option>
+      </nz-select>
+
+    </nz-form-control>
+  </nz-form-item>
+
+  <!--<nz-form-item>-->
+    <!--<nz-form-label [nzSm]="6" [nzXs]="24" nzFor="account" nzRequired>account</nz-form-label>-->
+    <!--<nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="请输入用户名">-->
+      <!--<input nz-input id="account" formControlName="account" placeholder="account"/>-->
+    <!--</nz-form-control>-->
+  <!--</nz-form-item>-->
+
+  <!--<nz-form-item>-->
+    <!--<nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>password</nz-form-label>-->
+    <!--<nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="请输入密码">-->
+      <!--<input nz-input id="password" type="password" formControlName="password" placeholder="password"/>-->
+    <!--</nz-form-control>-->
+  <!--</nz-form-item>-->
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="token" nzRequired>token</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="请输入token">
+      <input nz-input id="token" formControlName="token" placeholder="private_token"/>
+    </nz-form-control>
+  </nz-form-item>
+
+</form>

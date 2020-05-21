@@ -1,0 +1,67 @@
+.js-container {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  position: relative;
+}
+
+.js-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.js-utils {
+  border-radius: 4px;
+  height: 40px;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  box-shadow: 0 0 18px 2px rgba(0, 0, 0, 0.1);
+}
+
+.js-content {
+  margin-top: 10px;
+  border-radius: 5px;
+  background: url("../../assets/bg_drawer.png");
+  overflow: scroll;
+  flex: 1;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+  }
+}
+
+.js-drawer {
+  position: relative;
+}
+
+.js-edges {
+  overflow: visible;
+}
+
+.js-option {
+  width: 300px;
+  margin-left: 15px;
+  margin-top: 10px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 5px;
+  min-height: calc(100vh - 100px);
+}
+
+.js-node {
+  position: absolute;
+  z-index: 10;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+}
+

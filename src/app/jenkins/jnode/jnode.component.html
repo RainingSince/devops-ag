@@ -1,0 +1,62 @@
+<div #nodeContainer *ngIf="node.type == 'node'" [class]="active == node.name ? 'jn-node-s':''" class="jn-node">
+
+
+  <div class="jn-name" (click)="nameClick()">
+
+    <span *ngIf="node.title">
+      {{node.title}}
+    </span>
+
+    <span *ngIf="!node.title || node.title ==''">
+      No name
+    </span>
+
+  </div>
+
+  <div *ngFor="let item of node.steps" class="jn-step">
+
+    <div class="jn-step-content">
+      <div style="color: #1482ff">
+        {{item.type}}
+      </div>
+      <span *ngIf="item.type =='git'">
+       url  {{item.url}}
+      </span>
+      <span *ngIf="item.type == 'sh'">
+        {{item.content}}
+      </span>
+    </div>
+
+  </div>
+
+  <div class="jn-steps-add" (click)="stepClick()">
+
+    <svg t="1589280210053" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+         p-id="2130" width="10" height="18">
+      <path
+        d="M957.44 445.44h-378.88V66.56c0-36.864-29.696-66.56-66.56-66.56S445.44 29.696 445.44 66.56v378.88H66.56c-36.864 0-66.56 29.696-66.56 66.56s29.696 66.56 66.56 66.56h378.88v378.88c0 36.864 29.696 66.56 66.56 66.56s66.56-29.696 66.56-66.56v-378.88h378.88c36.864 0 66.56-29.696 66.56-66.56s-29.696-66.56-66.56-66.56z"
+        p-id="2131"></path>
+    </svg>
+    <span style="margin-left: 15px">添加步骤</span>
+  </div>
+
+
+</div>
+
+<div class="jn-base jn-flex jn-heaer" *ngIf="node.type == 'header'">
+  {{node.label}}
+</div>
+
+<div class="jn-base jn-flex jn-heaer" *ngIf="node.type =='footer'">
+  {{node.label}}
+</div>
+
+<div *ngIf="node.type == 'solt'" (click)="soltClick()" class="jn-base jn-flex jn-solt">
+  <svg t="1589280210053" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+       p-id="2130" width="15" height="20">
+    <path
+      d="M957.44 445.44h-378.88V66.56c0-36.864-29.696-66.56-66.56-66.56S445.44 29.696 445.44 66.56v378.88H66.56c-36.864 0-66.56 29.696-66.56 66.56s29.696 66.56 66.56 66.56h378.88v378.88c0 36.864 29.696 66.56 66.56 66.56s66.56-29.696 66.56-66.56v-378.88h378.88c36.864 0 66.56-29.696 66.56-66.56s-29.696-66.56-66.56-66.56z"
+      p-id="2131"></path>
+  </svg>
+  <span style="margin-left: 15px">{{node.label}}</span>
+</div>

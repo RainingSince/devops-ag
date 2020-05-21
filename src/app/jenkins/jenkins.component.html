@@ -1,0 +1,113 @@
+<div class="js-container">
+  <div class="js-header">
+    <div class="js-utils">
+
+      <i (click)="zoomClick(1)" nz-icon style="cursor: pointer">
+        <svg t="1589002183593" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+             p-id="2180" width="20" height="30">
+          <path
+            d="M490.382222 895.374222c221.980444 0 403.171556-181.134222 404.992-404.650666A404.821333 404.821333 0 0 0 490.382222 85.504 404.764444 404.764444 0 0 0 85.504 490.382222a404.764444 404.764444 0 0 0 404.935111 404.935111zM462.449778 447.146667H277.390222a42.723556 42.723556 0 0 0 0 85.504h185.002667v185.002666a42.723556 42.723556 0 1 0 85.447111 0V532.707556h185.002667a42.723556 42.723556 0 0 0 0-85.504H547.84V262.257778a42.723556 42.723556 0 1 0-85.447111 0V447.146667z m28.046222 533.617777A490.211556 490.211556 0 0 1 0 490.439111 490.211556 490.211556 0 0 1 490.382222 0c271.075556 0 490.439111 219.477333 490.439111 491.064889-2.104889 270.677333-221.354667 489.813333-490.382222 489.813333z"
+            fill="#2c2c2c" p-id="2181"></path>
+        </svg>
+      </i>
+
+      <i (click)="zoomClick(2)" nz-icon style="margin-left: 10px;cursor: pointer">
+        <svg t="1589002315576" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+             p-id="4041" width="21" height="30">
+          <path
+            d="M490.382222 895.374222c221.980444 0 403.171556-181.134222 404.992-404.650666A404.821333 404.821333 0 0 0 490.382222 85.504 404.764444 404.764444 0 0 0 85.504 490.382222a404.764444 404.764444 0 0 0 404.935111 404.935111z m0 85.447111A490.211556 490.211556 0 0 1 0 490.439111 490.211556 490.211556 0 0 1 490.382222 0c271.075556 0 490.439111 219.477333 490.439111 491.064889-2.104889 270.677333-221.354667 489.813333-490.382222 489.813333zM277.447111 532.707556h455.452445a42.723556 42.723556 0 0 0 0-85.504H277.390222a42.723556 42.723556 0 0 0 0 85.504z"
+            fill="#2c2c2c" p-id="4042"></path>
+        </svg>
+      </i>
+
+      <i (click)="zoomClick(3)" nz-icon style="margin-left: 10px;cursor: pointer">
+        <svg t="1589002351534" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+             p-id="4515" width="19" height="30">
+          <path
+            d="M511.999744 0.000512a507.903746 507.903746 0 0 0-358.399821 147.455926V102.400461a51.199974 51.199974 0 0 0-102.399949 0v153.599923a51.199974 51.199974 0 0 0 51.199975 51.199974h153.599923a51.199974 51.199974 0 0 0 0-102.399948h-16.895992A415.231792 415.231792 0 0 1 511.999744 102.400461a409.599795 409.599795 0 1 1-409.599795 409.599795v-5.631997L4.095998 449.536287A505.343747 505.343747 0 0 0 0 512.000256 511.999744 511.999744 0 1 0 511.999744 0.000512z"
+            p-id="4516" fill="#2c2c2c"></path>
+        </svg>
+      </i>
+
+    </div>
+
+    <button (click)="savePipeline()" style="margin-left: 10px" nz-button nzType="primary">
+      保存
+    </button>
+
+  </div>
+  <div class="js-content">
+
+    <div class="js-drawer" #drawer>
+
+      <div *ngFor="let item of nodes"
+           class="js-node"
+           [style]="formatStyle(item)"
+      >
+
+        <app-jnode (nodeClick)="nodeClick($event)" [updateFlag]="item.change" style="height: 100%"
+                   [active]="currentName" [node]="item">
+
+        </app-jnode>
+
+      </div>
+
+      <svg class="js-edges">
+        <g (click)="addNode(item)" fill="none" stroke="black" font-size="14pt" stroke-width="2"
+           *ngFor="let item of edges">
+          <path
+            [attr.d]="formatPathL(item)"
+            stroke-linecap="round"
+            [attr.stroke]="(item.end.type == 'solt'||item.begin.type == 'solt') ? 'rgba(0,0,0,0.3)' :'black'"
+          />
+          <circle
+            style="cursor: pointer"
+            *ngIf="item.begin.y <= item.end.y"
+            [attr.cx]="formatPathC(item)"
+            [attr.cy]="item.begin.y + 30" r="10"
+            stroke="black"
+            fill="write"/>
+          <text
+            style="cursor: pointer"
+            *ngIf="item.begin.y <= item.end.y"
+            [attr.x]="formatPathC(item) - 5.5"
+            [attr.y]="item.begin.y + 35"
+            stroke-width="1"
+            fill="black"
+          >+
+          </text>
+          <path
+            *ngIf="item.begin.y <= item.end.y"
+            [attr.d]="formatPathR(item)"
+            stroke-linecap="round"
+            [attr.stroke]="(item.end.type == 'solt'||item.begin.type == 'solt') ? 'rgba(0,0,0,0.3)' :'black'"
+          />
+        </g>
+      </svg>
+
+    </div>
+
+  </div>
+
+
+  <!--<div class="js-option">-->
+  <!--操作空间-->
+  <!--</div>-->
+
+</div>
+
+<nz-drawer
+  [nzMaskClosable]="false"
+  [nzWidth]="drawerWidth"
+  [nzVisible]="drawerVisible"
+  [nzBodyStyle]="{padding: 0}"
+  nzTitle="创建任务"
+  (nzOnClose)="drawerVisible = false"
+>
+
+  <app-jform (submit)="formSubmit($event)" *ngIf="drawerType == '1'" [node]="drawerCurrent"></app-jform>
+
+  <app-jtypes *ngIf="drawerType == '2'" (itemClick)="typeItemClick($event)"></app-jtypes>
+
+
+</nz-drawer>

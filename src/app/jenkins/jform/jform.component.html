@@ -1,0 +1,29 @@
+<div class="jf-container">
+
+  <form style="margin: 0 15px" nz-form nzLayout="vertical" [formGroup]="validateForm">
+
+    <nz-form-item>
+
+      <nz-form-label nzFor="token">名称</nz-form-label>
+
+      <nz-form-control>
+        <input nz-input id="title" formControlName="title" placeholder="请输入名称"/>
+      </nz-form-control>
+
+    </nz-form-item>
+
+  </form>
+
+
+  <div class="js-options">
+
+    <button (click)="formCancel()" nz-button nzType="default" style="margin-right: 30px">取消</button>
+
+    <button (click)="formSubmit()" nz-button nzType="primary" style="margin-right: 30px">保存</button>
+
+  </div>
+
+</div>
+
+
+

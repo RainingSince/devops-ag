@@ -1,0 +1,57 @@
+<nz-page-header
+  style="padding-left: 0"
+  nzTitle="项目列表"
+  [nzSubtitle]="'配置仓库中的项目列表  '+ (projects ? projects.length :'0') ">
+
+  <nz-page-header-extra>
+    <a nz-button nzType="link" (click)="setting()">仓库配置</a>
+  </nz-page-header-extra>
+
+</nz-page-header>
+
+<nz-list>
+  <nz-list-item *ngFor="let item of projects">
+    <nz-card
+      style="width: 100%"
+      [nzTitle]="item.name_with_namespace"
+      [nzHoverable]="true"
+      [nzExtra]="extraTemplate">
+
+      <div>
+        <span style="font-weight: bold;font-size: 16px;color: black">{{item.name}}</span>
+        <nz-tag style="margin-left: 10px" [nzColor]="'magenta'">{{item.visibility}}</nz-tag>
+      </div>
+
+      <div style="margin-top: 10px;margin-bottom: 10px">
+        {{item.description ? item.description :'暂无项目描述'}}
+      </div>
+
+      <div *ngIf="item.owner" style="margin-top: 10px;margin-bottom: 10px">
+        <img [src]="item.owner.avatar_url"
+             style="border-radius: 15px;width: 30px;
+             height: 30px;margin-right: 10px;
+             border: 1px solid #e1e3e4">
+        <span style="font-size: 14px">
+          {{item.owner.name}}
+        </span>
+      </div>
+
+      <div>
+        <span>创建时间：{{item.created_at}}</span>
+        <span style="margin-left: 10px">更新时间：{{item.last_activity_at}}</span>
+      </div>
+
+    </nz-card>
+  </nz-list-item>
+</nz-list>
+
+<div *ngIf="!userInfo || !userInfo.repos" (click)="setting()">
+  还没有设置仓库，赶快去设置吧！
+</div>
+
+<ng-template #extraTemplate>
+  <a>流水线</a>
+</ng-template>
+
+
+

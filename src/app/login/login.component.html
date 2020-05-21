@@ -1,0 +1,35 @@
+<div class="lg-container">
+
+  <div class="lg-content">
+
+    <img src="../../assets/bg_login.png" class="lg-img">
+
+    <div class="lg-form">
+      <h2>自动调度平台</h2>
+      <form style="margin-top: 30px;max-width: 300px" nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="请输入同户名">
+            <nz-input-group nzPrefixIcon="user">
+              <input formControlName="account" nz-input placeholder="用户名"/>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="请输入密码">
+            <nz-input-group nzPrefixIcon="lock">
+              <input formControlName="password" nz-input type="password" placeholder="密码"/>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <button style="width: 100%" nz-button nzType="primary" [disabled]="!validateForm.valid">登录</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+
+  </div>
+
+
+</div>
